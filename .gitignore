@@ -1,0 +1,30 @@
+# Результаты сборки
+bin/
+obj/
+publish/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# NuGet
+*.nupkg
+packages/
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Результаты публикации (уже есть bin/obj, но на всякий случай)
+artifacts/
+
+# Не добавляем Bootstrap из шаблона, используем только то, что сами написали
+# wwwroot/lib/
