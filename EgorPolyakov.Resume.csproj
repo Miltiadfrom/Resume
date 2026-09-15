@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWasmContentHash>false</UseWasmContentHash>
+    <WasmFingerprintAssets>false</WasmFingerprintAssets>
     <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
   </PropertyGroup>
 

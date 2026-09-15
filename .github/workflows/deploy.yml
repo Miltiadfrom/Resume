@@ -47,7 +47,12 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/wwwroot
-          if-no-files-found: error
+      
+      - name: Verify entry files exist
+        run: |
+          test -f build/wwwroot/_framework/blazor.boot.json || { echo "::error::blazor.boot.json NOT found"; exit 1; }
+          test -f build/wwwroot/_framework/blazor.webassembly.js || { echo "::error::blazor.webassembly.js NOT found"; exit 1; }
+          echo "OK: entry files present"
 
   deploy:
     needs: build
