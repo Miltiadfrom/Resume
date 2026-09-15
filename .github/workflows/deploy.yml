@@ -20,13 +20,34 @@ jobs:
         with:
           dotnet-version: '10.0.x'
       
+      - name: Verify .NET version
+        run: dotnet --version
+      
+      - name: Restore dependencies
+        run: dotnet restore
+      
       - name: Publish
-        run: dotnet publish -c Release -o build
+        run: dotnet publish -c Release -o build --nologo
+      
+      - name: List build output (DIAGNOSTICS)
+        run: |
+          echo "=== Contents of build/ ==="
+          ls -la build/
+          echo ""
+          echo "=== Contents of build/wwwroot/ ==="
+          ls -la build/wwwroot/ || echo "build/wwwroot does not exist!"
+          echo ""
+          echo "=== Contents of build/wwwroot/_framework/ ==="
+          ls -la build/wwwroot/_framework/ || echo "_framework does not exist!"
+          echo ""
+          echo "=== File count in build/ ==="
+          find build/ -type f | wc -l
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/wwwroot
+          if-no-files-found: error
 
   deploy:
     needs: build
