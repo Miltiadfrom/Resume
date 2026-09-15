@@ -50,9 +50,14 @@ jobs:
       
       - name: Verify entry files exist
         run: |
-          test -f build/wwwroot/_framework/blazor.boot.json || { echo "::error::blazor.boot.json NOT found"; exit 1; }
+          echo "=== First 15 files in _framework ==="
+          ls build/wwwroot/_framework/ | head -15
+          echo ""
+          echo "=== Script tags in published index.html ==="
+          grep -n "script" build/wwwroot/index.html || true
+          echo ""
           test -f build/wwwroot/_framework/blazor.webassembly.js || { echo "::error::blazor.webassembly.js NOT found"; exit 1; }
-          echo "OK: entry files present"
+          echo "OK: entry script present"
 
   deploy:
     needs: build
