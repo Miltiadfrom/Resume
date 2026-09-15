@@ -4,7 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Егор Поляков — Резюме</title>
-    <base href="/" />
+
+    <!-- Динамический base: "/" локально, "/Resume/" на GitHub Pages -->
+    <script>
+        (function () {
+            var base = '/';
+            if (window.location.pathname.indexOf('/Resume') === 0) {
+                base = '/Resume/';
+            }
+            var el = document.createElement('base');
+            el.href = base;
+            document.head.appendChild(el);
+        })();
+    </script>
+
+    <link rel="icon" href="data:," />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css" />
@@ -16,9 +30,7 @@
         </div>
     </div>
 
-    <!-- Единственный скрипт Blazor, без autostart -->
     <script src="_framework/blazor.webassembly.js"></script>
-    <!-- Наша анимация фона -->
     <script src="js/animations.js"></script>
 </body>
 </html>
